@@ -39,7 +39,7 @@
     <input type="number" id="inputValue" placeholder="Enter number of coins" min="1" max="100000" oninput="calculate()" />
 
     <div id="result"></div>
-    <div id="exactValue"></div> <!-- New element for exact value -->
+    <div id="exactValue"></div> <!-- Element for exact value without label -->
 
     <script>
         function calculate() {
@@ -67,7 +67,7 @@
             }
 
             document.getElementById('result').innerText = "Result: " + formatNumber(result) + " gems";
-            document.getElementById('exactValue').innerText = "Exact Value: " + result.toLocaleString();
+            document.getElementById('exactValue').innerText = result.toLocaleString(); // Displaying only the number
         }
 
         function formatNumber(num) {
