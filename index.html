@@ -1,97 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gem Calculator</title>
+    <title>Berapa Mau Kamu Donasi?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Fredoka One', sans-serif;
+            background-color: #f4f4f4;
             text-align: center;
-            margin-top: 50px;
+            margin: 0;
+            padding: 0;
         }
         .container {
-            display: inline-block;
+            max-width: 600px;
+            margin: 50px auto;
             padding: 20px;
-            border: 1px solid #ddd;
+            background: #fff;
             border-radius: 10px;
-            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         input[type="number"] {
+            width: 100%;
             padding: 10px;
             font-size: 16px;
+            border: 2px solid #ddd;
             border-radius: 5px;
-            border: 1px solid #ddd;
-            width: 100%;
-            box-sizing: border-box;
+            margin-bottom: 20px;
         }
         .result {
-            margin-top: 20px;
             font-size: 24px;
             color: green;
+            margin-top: 20px;
         }
-        .exact-result {
-            font-size: 18px;
-            color: #333;
+        .result-extra {
+            font-size: 20px;
+            color: #007bff;
             margin-top: 10px;
+        }
+        .error {
+            color: red;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>How Many Coins Do You Want to Give?</h1>
-        <input type="number" id="inputValue" min="1" max="100000" placeholder="Enter value" oninput="calculate()">
+        <h1>Berapa Mau Kamu Donasi?</h1>
+        <input type="number" id="donasiInput" placeholder="Masukkan jumlah donasi" min="1000" max="5000000">
         <div class="result" id="result"></div>
-        <div class="exact-result" id="exactResult"></div>
+        <div class="result-extra" id="resultExtra"></div>
+        <div class="error" id="error"></div>
     </div>
 
     <script>
-        function formatNumber(number) {
-            if (number >= 1000000000) {
-                return (number / 1000000000).toFixed(2).replace(/\.00$/, '') + 'b';
-            } else if (number >= 1000000) {
-                return (number / 1000000).toFixed(2).replace(/\.00$/, '') + 'm';
-            } else if (number >= 1000) {
-                return (number / 1000).toFixed(2).replace(/\.00$/, '') + 'k';
+        function formatNumber(num) {
+            if (num >= 1000000000) {
+                return (num / 1000000000).toFixed(1) + 'b';
+            } else if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'm';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'k';
             } else {
-                return number.toLocaleString();
+                return num;
             }
         }
 
-        function calculate() {
-            let input = parseInt(document.getElementById('inputValue').value);
-            
-            if (isNaN(input) || input < 1) {
-                document.getElementById('result').textContent = "Value must be between 1 and 100,000";
-                document.getElementById('exactResult').textContent = "";
+        document.getElementById('donasiInput').addEventListener('input', function() {
+            const donasi = parseFloat(this.value);
+            const resultElement = document.getElementById('result');
+            const resultExtraElement = document.getElementById('resultExtra');
+            const errorElement = document.getElementById('error');
+
+            // Clear previous messages
+            resultElement.textContent = '';
+            resultExtraElement.textContent = '';
+            errorElement.textContent = '';
+
+            if (isNaN(donasi) || donasi < 1000 || donasi > 5000000) {
+                errorElement.textContent = 'Jumlah donasi harus antara 1.000 dan 5.000.000.';
                 return;
             }
 
-            if (input > 100000) {
-                input = 100000;
-                document.getElementById('inputValue').value = input;
-            }
+            // Calculate gems
+            const gems = (donasi / 180) * 1000000;
+            const qrisGems = gems * 1.05; // 5% bonus for QRIS
 
-            let multiplier;
-
-            if (input >= 1 && input <= 4) {
-                multiplier = 400000;
-            } else if (input >= 5 && input <= 9) {
-                multiplier = 400000;
-            } else if (input >= 10 && input <= 99) {
-                multiplier = 420000;
-            } else if (input >= 100 && input <= 499) {
-                multiplier = 430000;
-            } else if (input >= 500 && input <= 999) {
-                multiplier = 440000;
-            } else if (input >= 1000) {
-                multiplier = 450000;
-            }
-
-            const result = input * multiplier;
-            document.getElementById('result').textContent = "Result: " + formatNumber(result) + " gems";
-            document.getElementById('exactResult').textContent = "Exact Result: " + result.toLocaleString();
-        }
+            resultElement.textContent = `Gems yang didapat: ${formatNumber(gems)}`;
+            resultExtraElement.textContent = `Gems jika menggunakan QRIS (5% bonus): ${formatNumber(qrisGems)}`;
+        });
     </script>
 </body>
 </html>
