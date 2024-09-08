@@ -25,10 +25,24 @@
             width: 100%;
             box-sizing: border-box;
         }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
         .result {
             margin-top: 20px;
             font-size: 24px;
             color: green;
+        }
+        .exact-result {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -37,6 +51,7 @@
         <h1>Berapa kamu mau mengasih koin?</h1>
         <input type="number" id="inputValue" min="1" max="100000" placeholder="Masukkan nilai" oninput="calculate()">
         <div class="result" id="result"></div>
+        <div class="exact-result" id="exactResult"></div>
     </div>
 
     <script>
@@ -57,6 +72,7 @@
             
             if (isNaN(input) || input < 1) {
                 document.getElementById('result').textContent = "Nilai harus antara 1 dan 100.000";
+                document.getElementById('exactResult').textContent = "";
                 return;
             }
 
@@ -83,6 +99,7 @@
 
             const result = input * multiplier;
             document.getElementById('result').textContent = "Hasil: " + formatNumber(result) + " gems";
+            document.getElementById('exactResult').textContent = "Hasil Sebenarnya: " + result.toLocaleString();
         }
     </script>
 </body>
