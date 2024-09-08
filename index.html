@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Gems</title>
+    <title>Gems Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,7 +19,6 @@
             background-color: #333;
             color: white;
         }
-        /* Dark mode otomatis berdasarkan preferensi sistem */
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #333;
@@ -30,10 +29,10 @@
 </head>
 <body>
 
-    <h1>Berapa kamu mau mengasih koins?</h1>
-    <p>Masukkan jumlah koins dan hasilnya akan muncul sebagai gems:</p>
+    <h1>How Many Coins Do You Want to Give?</h1>
+    <p>Enter the number of coins and see the result in gems:</p>
 
-    <input type="number" id="inputValue" placeholder="Masukkan jumlah koins" oninput="calculate()" />
+    <input type="number" id="inputValue" placeholder="Enter number of coins" oninput="calculate()" />
 
     <div id="result"></div>
 
@@ -56,22 +55,22 @@
                 result = inputValue * 450000;
             }
 
-            document.getElementById('result').innerHTML = "Hasil: " + formatNumber(result) + " gems";
+            document.getElementById('result').innerHTML = "Result: " + formatNumber(result) + " gems";
         }
 
         function formatNumber(num) {
             if (num >= 1e9) {
-                return (num / 1e9).toFixed(2).replace('.00', '') + 'b'; // Millyaran
+                return (num / 1e9).toFixed(1).replace('.0', '') + 'b'; // Billion
             } else if (num >= 1e6) {
-                return (num / 1e6).toFixed(2).replace('.00', '') + 'm'; // Jutaan
+                return (num / 1e6).toFixed(1).replace('.0', '') + 'm'; // Million
             } else if (num >= 1e3) {
-                return (num / 1e3).toFixed(2).replace('.00', '') + 'k'; // Ribuan
+                return (num / 1e3).toFixed(1).replace('.0', '') + 'k'; // Thousand
             } else {
-                return num.toLocaleString(); // Tanpa singkatan
+                return num.toLocaleString(); // No abbreviation
             }
         }
 
-        // Periksa preferensi mode gelap pengguna saat membuka website
+        // Apply dark mode based on system preference
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.body.classList.add('dark-mode');
         }
