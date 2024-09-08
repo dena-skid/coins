@@ -14,22 +14,22 @@
             transition: background-color 0.5s, color 0.5s;
         }
         input { padding: 10px; font-size: 16px; }
-        #result { margin-top: 20px; font-size: 24px; color: purple; }
-        .dark-mode {
-            background-color: #333;
-            color: white;
-        }
+        #result { margin-top: 20px; font-size: 24px; color: green; } /* Changed color to green */
+        /* Dark mode based on system preference */
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #333;
                 color: white;
+            }
+            #result {
+                color: lightgreen; /* Adjusted color for dark mode */
             }
         }
     </style>
 </head>
 <body>
 
-    <h1>How Many Coins Do You Want to Give?</h1>
+    <h1>How many coins do you want to give?</h1>
     <p>Enter the number of coins and see the result in gems:</p>
 
     <input type="number" id="inputValue" placeholder="Enter number of coins" oninput="calculate()" />
@@ -55,22 +55,22 @@
                 result = inputValue * 450000;
             }
 
-            document.getElementById('result').innerHTML = "Result: " + formatNumber(result) + " gems";
+            document.getElementById('result').innerText = "Result: " + formatNumber(result) + " gems";
         }
 
         function formatNumber(num) {
             if (num >= 1e9) {
-                return (num / 1e9).toFixed(1).replace('.0', '') + 'b'; // Billion
+                return (num / 1e9).toFixed(2).replace('.00', '') + 'b'; // Billions
             } else if (num >= 1e6) {
-                return (num / 1e6).toFixed(1).replace('.0', '') + 'm'; // Million
+                return (num / 1e6).toFixed(2).replace('.00', '') + 'm'; // Millions
             } else if (num >= 1e3) {
-                return (num / 1e3).toFixed(1).replace('.0', '') + 'k'; // Thousand
+                return (num / 1e3).toFixed(2).replace('.00', '') + 'k'; // Thousands
             } else {
-                return num.toLocaleString(); // No abbreviation
+                return num.toLocaleString(); // Without abbreviation
             }
         }
 
-        // Apply dark mode based on system preference
+        // Check dark mode preference on page load
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.body.classList.add('dark-mode');
         }
