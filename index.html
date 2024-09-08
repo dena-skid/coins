@@ -6,17 +6,16 @@
     <title>Kalkulator Website</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        input, button { padding: 10px; font-size: 16px; }
+        input { padding: 10px; font-size: 16px; }
         #result { margin-top: 20px; font-size: 24px; color: green; }
     </style>
 </head>
 <body>
 
     <h1>Kalkulator Multiplier</h1>
-    <p>Masukkan angka dan klik hitung:</p>
+    <p>Masukkan angka dan hasil akan otomatis muncul:</p>
 
-    <input type="number" id="inputValue" placeholder="Masukkan angka" />
-    <button onclick="calculate()">Hitung</button>
+    <input type="number" id="inputValue" placeholder="Masukkan angka" oninput="calculate()" />
 
     <div id="result"></div>
 
