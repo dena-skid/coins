@@ -25,15 +25,6 @@
             width: 100%;
             box-sizing: border-box;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
         .result {
             margin-top: 20px;
             font-size: 24px;
@@ -57,11 +48,11 @@
     <script>
         function formatNumber(number) {
             if (number >= 1000000000) {
-                return (number / 1000000000).toFixed(1) + 'b';
+                return (number / 1000000000).toFixed(2).replace(/\.00$/, '') + 'b';
             } else if (number >= 1000000) {
-                return (number / 1000000).toFixed(1) + 'm';
+                return (number / 1000000).toFixed(2).replace(/\.00$/, '') + 'm';
             } else if (number >= 1000) {
-                return (number / 1000).toFixed(1) + 'k';
+                return (number / 1000).toFixed(2).replace(/\.00$/, '') + 'k';
             } else {
                 return number.toLocaleString();
             }
