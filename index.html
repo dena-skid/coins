@@ -38,7 +38,19 @@
                 result = inputValue * 450000;
             }
 
-            document.getElementById('result').innerHTML = "Hasil: Rp " + result.toLocaleString();
+            document.getElementById('result').innerHTML = "Hasil: " + formatNumber(result);
+        }
+
+        function formatNumber(num) {
+            if (num >= 1e9) {
+                return (num / 1e9).toFixed(2) + 'b'; // Millyaran
+            } else if (num >= 1e6) {
+                return (num / 1e6).toFixed(2) + 'm'; // Jutaan
+            } else if (num >= 1e3) {
+                return (num / 1e3).toFixed(2) + 'k'; // Ribuan
+            } else {
+                return num.toLocaleString(); // Tanpa singkatan
+            }
         }
     </script>
 
