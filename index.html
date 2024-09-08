@@ -1,16 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My GitHub Website</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-    h1 { color: #333; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Website</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input, button { padding: 10px; font-size: 16px; }
+        #result { margin-top: 20px; font-size: 24px; color: green; }
+    </style>
 </head>
 <body>
-  <h1>Welcome to My GitHub Pages Website!</h1>
-  <p>This is my first website hosted on GitHub Pages.</p>
+
+    <h1>Kalkulator Multiplier</h1>
+    <p>Masukkan angka dan klik hitung:</p>
+
+    <input type="number" id="inputValue" placeholder="Masukkan angka" />
+    <button onclick="calculate()">Hitung</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculate() {
+            var inputValue = parseInt(document.getElementById('inputValue').value);
+            var result = 0;
+
+            if (inputValue >= 1 && inputValue <= 4) {
+                result = inputValue * 400000;
+            } else if (inputValue >= 5 && inputValue <= 9) {
+                result = inputValue * 400000;
+            } else if (inputValue >= 10 && inputValue <= 99) {
+                result = inputValue * 420000;
+            } else if (inputValue >= 100 && inputValue <= 499) {
+                result = inputValue * 430000;
+            } else if (inputValue >= 500 && inputValue <= 999) {
+                result = inputValue * 440000;
+            } else if (inputValue >= 1000) {
+                result = inputValue * 450000;
+            }
+
+            document.getElementById('result').innerHTML = "Hasil: Rp " + result.toLocaleString();
+        }
+    </script>
+
 </body>
 </html>
