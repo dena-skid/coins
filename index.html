@@ -14,8 +14,9 @@
             transition: background-color 0.5s, color 0.5s;
         }
         input { padding: 10px; font-size: 16px; }
-        #result { margin-top: 20px; font-size: 24px; color: green; } /* Result color is green */
-        #originalValue { margin-top: 10px; font-size: 18px; color: black; } /* Original value color */
+        #result, #actualValue { margin-top: 20px; font-size: 24px; }
+        #result { color: green; } /* Result color is green */
+        #actualValue { color: black; } /* Actual value color */
         /* Dark mode based on system preference */
         @media (prefers-color-scheme: dark) {
             body {
@@ -24,9 +25,6 @@
             }
             #result {
                 color: lightgreen; /* Adjusted color for dark mode */
-            }
-            #originalValue {
-                color: lightgray; /* Adjusted color for dark mode */
             }
         }
     </style>
@@ -39,7 +37,7 @@
     <input type="number" id="inputValue" placeholder="Enter number of coins" min="1" max="100000" oninput="calculate()" />
 
     <div id="result"></div>
-    <div id="originalValue"></div> <!-- Display original value here -->
+    <div id="actualValue"></div> <!-- Added div for actual value -->
 
     <script>
         function calculate() {
@@ -48,7 +46,7 @@
 
             if (isNaN(inputValue) || inputValue < 1 || inputValue > 100000) {
                 document.getElementById('result').innerText = "Please enter a number between 1 and 100,000.";
-                document.getElementById('originalValue').innerText = "";
+                document.getElementById('actualValue').innerText = "";
                 return;
             }
 
@@ -67,7 +65,7 @@
             }
 
             document.getElementById('result').innerText = "Result: " + formatNumber(result) + " gems";
-            document.getElementById('originalValue').innerText = "Original value: " + inputValue.toLocaleString(); // Display original value
+            document.getElementById('actualValue').innerText = "Actual Value: " + formatNumber(result); // Display actual value
         }
 
         function formatNumber(num) {
