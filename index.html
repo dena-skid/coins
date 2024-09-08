@@ -23,15 +23,6 @@
             border-radius: 5px;
             border: 1px solid #ddd;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
         .result {
             margin-top: 20px;
             font-size: 24px;
@@ -42,12 +33,23 @@
 <body>
     <div class="container">
         <h1>Berapa kamu mau mengasih koin?</h1>
-        <input type="number" id="inputValue" min="1" max="100000" placeholder="Masukkan nilai">
-        <button onclick="calculate()">Hitung</button>
+        <input type="number" id="inputValue" min="1" max="100000" placeholder="Masukkan nilai" oninput="calculate()">
         <div class="result" id="result"></div>
     </div>
 
     <script>
+        function formatNumber(number) {
+            if (number >= 1000000000) {
+                return (number / 1000000000).toFixed(1) + 'b';
+            } else if (number >= 1000000) {
+                return (number / 1000000).toFixed(1) + 'm';
+            } else if (number >= 1000) {
+                return (number / 1000).toFixed(1) + 'k';
+            } else {
+                return number.toLocaleString();
+            }
+        }
+
         function calculate() {
             const input = parseInt(document.getElementById('inputValue').value);
             let multiplier;
@@ -70,7 +72,7 @@
             }
 
             const result = input * multiplier;
-            document.getElementById('result').textContent = "Hasil: " + result.toLocaleString() + " gems";
+            document.getElementById('result').textContent = "Hasil: " + formatNumber(result) + " gems";
         }
     </script>
 </body>
