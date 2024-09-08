@@ -19,12 +19,6 @@
             background-color: #333;
             color: white;
         }
-        .toggle-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
         /* Dark mode otomatis berdasarkan preferensi sistem */
         @media (prefers-color-scheme: dark) {
             body {
@@ -42,8 +36,6 @@
     <input type="number" id="inputValue" placeholder="Masukkan jumlah koins" oninput="calculate()" />
 
     <div id="result"></div>
-
-    <button class="toggle-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
     <script>
         function calculate() {
@@ -77,10 +69,6 @@
             } else {
                 return num.toLocaleString(); // Tanpa singkatan
             }
-        }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
         }
 
         // Periksa preferensi mode gelap pengguna saat membuka website
