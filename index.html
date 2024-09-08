@@ -1,103 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gems Calculator</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"> <!-- Link to Fredoka One font -->
+    <title>Gem Calculator</title>
     <style>
         body {
-            font-family: 'Fredoka One', cursive; /* Apply Fredoka One font */
+            font-family: 'Fredoka One', sans-serif;
             text-align: center;
             margin-top: 50px;
-            background-color: white;
-            color: black;
-            transition: background-color 0.5s, color 0.5s;
-            text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Text stroke effect */
         }
-        input { 
-            padding: 10px; 
-            font-size: 16px; 
+        .container {
+            display: inline-block;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
         }
-        #result { 
-            margin-top: 20px; 
-            font-size: 24px; 
-            color: green; 
-            text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Text stroke effect */
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
         }
-        #exactValue { 
-            margin-top: 10px; 
-            font-size: 18px; 
-            color: black; 
-            text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Text stroke effect */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
         }
-        /* Dark mode based on system preference */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #333;
-                color: white;
-                text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Text stroke effect */
-            }
-            #result {
-                color: lightgreen; /* Adjusted color for dark mode */
-            }
-            #exactValue {
-                color: lightgray; /* Adjusted color for dark mode */
-            }
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+            color: green;
         }
     </style>
 </head>
 <body>
-
-    <h1>How many coins do you want to give?</h1>
-    <p>Enter the number of coins (1-100,000) and see the result in gems:</p>
-
-    <input type="number" id="inputValue" placeholder="Enter number of coins" min="1" max="100000" oninput="calculate()" />
-
-    <div id="result"></div>
-    <div id="exactValue"></div> <!-- Element for exact value without label -->
+    <div class="container">
+        <h1>Berapa kamu mau mengasih koin?</h1>
+        <input type="number" id="inputValue" min="1" max="100000" placeholder="Masukkan nilai">
+        <button onclick="calculate()">Hitung</button>
+        <div class="result" id="result"></div>
+    </div>
 
     <script>
         function calculate() {
-            var inputValue = parseInt(document.getElementById('inputValue').value);
-            var result = 0;
+            const input = parseInt(document.getElementById('inputValue').value);
+            let multiplier;
 
-            if (isNaN(inputValue) || inputValue < 1 || inputValue > 100000) {
-                document.getElementById('result').innerText = "Please enter a number between 1 and 100,000.";
-                document.getElementById('exactValue').innerText = "";
+            if (input >= 1 && input <= 4) {
+                multiplier = 400000;
+            } else if (input >= 5 && input <= 9) {
+                multiplier = 400000;
+            } else if (input >= 10 && input <= 99) {
+                multiplier = 420000;
+            } else if (input >= 100 && input <= 499) {
+                multiplier = 430000;
+            } else if (input >= 500 && input <= 999) {
+                multiplier = 440000;
+            } else if (input >= 1000) {
+                multiplier = 450000;
+            } else {
+                document.getElementById('result').textContent = "Nilai harus antara 1 dan 100.000";
                 return;
             }
 
-            if (inputValue >= 1 && inputValue <= 4) {
-                result = inputValue * 400000;
-            } else if (inputValue >= 5 && inputValue <= 9) {
-                result = inputValue * 400000;
-            } else if (inputValue >= 10 && inputValue <= 99) {
-                result = inputValue * 420000;
-            } else if (inputValue >= 100 && inputValue <= 499) {
-                result = inputValue * 430000;
-            } else if (inputValue >= 500 && inputValue <= 999) {
-                result = inputValue * 440000;
-            } else if (inputValue >= 1000) {
-                result = inputValue * 450000;
-            }
-
-            document.getElementById('result').innerText = "Result: " + formatNumber(result) + " gems";
-            document.getElementById('exactValue').innerText = result.toLocaleString(); // Displaying only the number
-        }
-
-        function formatNumber(num) {
-            if (num >= 1e9) {
-                return (num / 1e9).toFixed(2).replace('.00', '') + 'b'; // Billions
-            } else if (num >= 1e6) {
-                return (num / 1e6).toFixed(2).replace('.00', '') + 'm'; // Millions
-            } else if (num >= 1e3) {
-                return (num / 1e3).toFixed(2).replace('.00', '') + 'k'; // Thousands
-            } else {
-                return num.toLocaleString(); // Without abbreviation
-            }
+            const result = input * multiplier;
+            document.getElementById('result').textContent = "Hasil: " + result.toLocaleString() + " gems";
         }
     </script>
-
 </body>
 </html>
