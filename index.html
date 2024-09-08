@@ -6,46 +6,30 @@
     <title>Gems Calculator</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"> <!-- Link to Fredoka One font -->
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
+        body {
             font-family: 'Fredoka One', cursive; /* Apply Fredoka One font */
             text-align: center;
+            margin-top: 50px;
             background-color: white;
             color: black;
             transition: background-color 0.5s, color 0.5s;
             text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Text stroke effect */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
         }
-        h1, p, #result, #exactValue {
-            margin: 0;
+        input { 
+            padding: 10px; 
+            font-size: 16px; 
         }
-        h1 {
-            font-size: 5vw; /* Responsive font size for heading */
+        #result { 
+            margin-top: 20px; 
+            font-size: 24px; 
+            color: green; 
+            text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Text stroke effect */
         }
-        p {
-            font-size: 3vw; /* Responsive font size for paragraph */
-        }
-        input {
-            padding: 10px;
-            font-size: 2vw; /* Responsive font size for input */
-            margin-top: 20px;
-            width: 80%;
-            max-width: 500px; /* Maximum width for input */
-        }
-        #result, #exactValue {
-            margin-top: 20px;
-            font-size: 4vw; /* Responsive font size for result and exact value */
-        }
-        #result {
-            color: green; /* Result color */
-        }
-        #exactValue {
-            color: black; /* Exact value color */
+        #exactValue { 
+            margin-top: 10px; 
+            font-size: 18px; 
+            color: black; 
+            text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Text stroke effect */
         }
         /* Dark mode based on system preference */
         @media (prefers-color-scheme: dark) {
