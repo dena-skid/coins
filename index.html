@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,8 +39,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Berapa kamu mau mengasih koin?</h1>
-        <input type="number" id="inputValue" min="1" max="100000" placeholder="Masukkan nilai" oninput="calculate()">
+        <h1>How Many Coins Do You Want to Give?</h1>
+        <input type="number" id="inputValue" min="1" max="100000" placeholder="Enter value" oninput="calculate()">
         <div class="result" id="result"></div>
         <div class="exact-result" id="exactResult"></div>
     </div>
@@ -62,7 +62,7 @@
             let input = parseInt(document.getElementById('inputValue').value);
             
             if (isNaN(input) || input < 1) {
-                document.getElementById('result').textContent = "Nilai harus antara 1 dan 100.000";
+                document.getElementById('result').textContent = "Value must be between 1 and 100,000";
                 document.getElementById('exactResult').textContent = "";
                 return;
             }
@@ -89,8 +89,8 @@
             }
 
             const result = input * multiplier;
-            document.getElementById('result').textContent = "Hasil: " + formatNumber(result) + " gems";
-            document.getElementById('exactResult').textContent = "Hasil Sebenarnya: " + result.toLocaleString();
+            document.getElementById('result').textContent = "Result: " + formatNumber(result) + " gems";
+            document.getElementById('exactResult').textContent = "Exact Result: " + result.toLocaleString();
         }
     </script>
 </body>
