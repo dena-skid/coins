@@ -14,7 +14,7 @@
             transition: background-color 0.5s, color 0.5s;
         }
         input { padding: 10px; font-size: 16px; }
-        #result { margin-top: 20px; font-size: 24px; color: green; } /* Changed color to green */
+        #result { margin-top: 20px; font-size: 24px; color: green; } /* Result color is green */
         /* Dark mode based on system preference */
         @media (prefers-color-scheme: dark) {
             body {
@@ -30,9 +30,9 @@
 <body>
 
     <h1>How many coins do you want to give?</h1>
-    <p>Enter the number of coins and see the result in gems:</p>
+    <p>Enter the number of coins (1-100,000) and see the result in gems:</p>
 
-    <input type="number" id="inputValue" placeholder="Enter number of coins" oninput="calculate()" />
+    <input type="number" id="inputValue" placeholder="Enter number of coins" min="1" max="100000" oninput="calculate()" />
 
     <div id="result"></div>
 
@@ -40,6 +40,11 @@
         function calculate() {
             var inputValue = parseInt(document.getElementById('inputValue').value);
             var result = 0;
+
+            if (isNaN(inputValue) || inputValue < 1 || inputValue > 100000) {
+                document.getElementById('result').innerText = "Please enter a number between 1 and 100,000.";
+                return;
+            }
 
             if (inputValue >= 1 && inputValue <= 4) {
                 result = inputValue * 400000;
@@ -68,11 +73,6 @@
             } else {
                 return num.toLocaleString(); // Without abbreviation
             }
-        }
-
-        // Check dark mode preference on page load
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('dark-mode');
         }
     </script>
 
