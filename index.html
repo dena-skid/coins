@@ -13,33 +13,36 @@
             background-color: white;
             color: black;
             transition: background-color 0.5s, color 0.5s;
+            text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Text stroke effect */
         }
-        input { padding: 10px; font-size: 16px; }
-        #result {
-            margin-top: 20px;
-            font-size: 24px;
-            color: green;
-            text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000; /* Black stroke effect */
+        input { 
+            padding: 10px; 
+            font-size: 16px; 
         }
-        #exactValue {
-            margin-top: 10px;
-            font-size: 18px;
-            color: black;
-            text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000; /* Black stroke effect */
+        #result { 
+            margin-top: 20px; 
+            font-size: 24px; 
+            color: green; 
+            text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Text stroke effect */
+        }
+        #exactValue { 
+            margin-top: 10px; 
+            font-size: 18px; 
+            color: black; 
+            text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Text stroke effect */
         }
         /* Dark mode based on system preference */
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #333;
                 color: white;
+                text-shadow: 1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black; /* Text stroke effect */
             }
             #result {
                 color: lightgreen; /* Adjusted color for dark mode */
-                text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000; /* Black stroke effect */
             }
             #exactValue {
                 color: lightgray; /* Adjusted color for dark mode */
-                text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000; /* Black stroke effect */
             }
         }
     </style>
