@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Gems Bolak-Balik</title>
+    <title>Kalkulator Gems</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,17 +13,8 @@
             color: black;
             transition: background-color 0.5s, color 0.5s;
         }
-        input {
-            padding: 10px;
-            font-size: 16px;
-            margin: 10px;
-            width: 200px;
-        }
-        #result {
-            margin-top: 20px;
-            font-size: 24px;
-            color: purple;
-        }
+        input { padding: 10px; font-size: 16px; }
+        #result { margin-top: 20px; font-size: 24px; color: purple; }
         .dark-mode {
             background-color: #333;
             color: white;
@@ -34,6 +25,7 @@
             font-size: 16px;
             cursor: pointer;
         }
+        /* Dark mode otomatis berdasarkan preferensi sistem */
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #333;
@@ -45,54 +37,34 @@
 <body>
 
     <h1>Berapa kamu mau mengasih koins?</h1>
-    <p>Masukkan jumlah koins atau gems dan hasilnya akan otomatis dihitung:</p>
+    <p>Masukkan jumlah koins dan hasilnya akan muncul sebagai gems:</p>
 
-    <input type="number" id="koinsInput" placeholder="Masukkan koins" oninput="calculateFromKoins()" />
-    <input type="number" id="gemsInput" placeholder="Masukkan gems" oninput="calculateFromGems()" />
+    <input type="number" id="inputValue" placeholder="Masukkan jumlah koins" oninput="calculate()" />
 
     <div id="result"></div>
 
     <button class="toggle-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
     <script>
-        function calculateFromKoins() {
-            var koins = parseInt(document.getElementById('koinsInput').value);
-            var gems = 0;
+        function calculate() {
+            var inputValue = parseInt(document.getElementById('inputValue').value);
+            var result = 0;
 
-            if (koins >= 1 && koins <= 4) {
-                gems = koins * 400000;
-            } else if (koins >= 5 && koins <= 9) {
-                gems = koins * 400000;
-            } else if (koins >= 10 && koins <= 99) {
-                gems = koins * 420000;
-            } else if (koins >= 100 && koins <= 499) {
-                gems = koins * 430000;
-            } else if (koins >= 500 && koins <= 999) {
-                gems = koins * 440000;
-            } else if (koins >= 1000) {
-                gems = koins * 450000;
+            if (inputValue >= 1 && inputValue <= 4) {
+                result = inputValue * 400000;
+            } else if (inputValue >= 5 && inputValue <= 9) {
+                result = inputValue * 400000;
+            } else if (inputValue >= 10 && inputValue <= 99) {
+                result = inputValue * 420000;
+            } else if (inputValue >= 100 && inputValue <= 499) {
+                result = inputValue * 430000;
+            } else if (inputValue >= 500 && inputValue <= 999) {
+                result = inputValue * 440000;
+            } else if (inputValue >= 1000) {
+                result = inputValue * 450000;
             }
 
-            document.getElementById('gemsInput').value = formatNumber(gems);
-        }
-
-        function calculateFromGems() {
-            var gems = parseInt(document.getElementById('gemsInput').value);
-            var koins = 0;
-
-            if (gems >= 400000 && gems < 420000) {
-                koins = gems / 400000;
-            } else if (gems >= 420000 && gems < 430000) {
-                koins = gems / 420000;
-            } else if (gems >= 430000 && gems < 440000) {
-                koins = gems / 430000;
-            } else if (gems >= 440000 && gems < 450000) {
-                koins = gems / 440000;
-            } else if (gems >= 450000) {
-                koins = gems / 450000;
-            }
-
-            document.getElementById('koinsInput').value = koins.toFixed(0);
+            document.getElementById('result').innerHTML = "Hasil: " + formatNumber(result) + " gems";
         }
 
         function formatNumber(num) {
